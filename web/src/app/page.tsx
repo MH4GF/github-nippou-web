@@ -11,7 +11,9 @@ export default function Home() {
     if (!textareaRef.current) return;
 
     setIsLoading(true);
+    // @ts-ignore
     const ret = await global.GithubNippou();
+    console.log({ ret });
     textareaRef.current.value = ret;
     setIsLoading(false);
   }, []);

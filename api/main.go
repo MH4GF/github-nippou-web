@@ -52,5 +52,8 @@ func rootHandler(w http.ResponseWriter, r *http.Request) {
 func main() {
 	http.HandleFunc("/", rootHandler)
 	http.HandleFunc("/healthz", healthCheckHandler)
-	http.ListenAndServe(os.Getenv("PORT"), nil)
+	port := os.Getenv("PORT")
+	addr := ":" + port
+	fmt.Println("Listening on port " + port)
+	http.ListenAndServe(addr, nil)
 }

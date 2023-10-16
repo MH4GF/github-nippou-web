@@ -35,7 +35,6 @@ func rootHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	body := ResponseBody{Result: lines}
-	fmt.Println(body)
 
 	jsonData, err := json.Marshal(body)
 	if err != nil {

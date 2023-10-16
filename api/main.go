@@ -14,7 +14,11 @@ type ResponseBody struct {
 	Result string `json:"result"`
 }
 
-func handler(w http.ResponseWriter, r *http.Request) {
+func healthCheckHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "OK")
+}
+
+func rootHandler(w http.ResponseWriter, r *http.Request) {
 	debug := true
 	nowDate := time.Now().Format("20060102")
 	sinceDate := nowDate
@@ -46,6 +50,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	http.HandleFunc("/", handler)
+	http.HandleFunc("/", rootHandler)
+	http.HandleFunc("/healthz", healthCheckHandler)
 	http.ListenAndServe(os.Getenv("PORT"), nil)
 }

@@ -15,14 +15,12 @@ export const authOptions: AuthOptions = {
   ],
   callbacks: {
     async session({ session, token }) {
-      console.log({ session, token });
       session.user.accessToken = token.accessToken;
       session.user.login = token.login;
 
       return session;
     },
     async jwt({ token, account, profile }) {
-      console.log({ token, account, profile });
       if (account) {
         token.accessToken = account.access_token;
         // @ts-ignore

@@ -1,7 +1,5 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { WasmScript } from "./WasmScript";
-import { getServerSession } from "./_auth/getServerSession";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,12 +11,8 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getServerSession();
-  console.log({ session });
-
   return (
     <html lang="ja">
-      <WasmScript accessToken={session?.user.accessToken} />
       <body>{children}</body>
     </html>
   );

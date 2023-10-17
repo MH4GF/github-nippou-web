@@ -19,7 +19,7 @@ func healthCheckHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func rootHandler(w http.ResponseWriter, r *http.Request) {
-	debug := true
+	debug := false
 	nowDate := time.Now().Format("20060102")
 	sinceDate := nowDate
 	untilDate := nowDate

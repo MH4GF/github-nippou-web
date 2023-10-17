@@ -19,13 +19,16 @@ func healthCheckHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func rootHandler(w http.ResponseWriter, r *http.Request) {
+	queryParams := r.URL.Query()
+	user := queryParams.Get("user")
+	token := queryParams.Get("token")
 	debug := false
 	nowDate := time.Now().Format("20060102")
 	sinceDate := nowDate
 	untilDate := nowDate
 	auth := lib.Auth{
-		User:        "MH4GF",
-		AccessToken: os.Getenv("GITHUB_NIPPOU_ACCESS_TOKEN"),
+		User:        user,
+		AccessToken: token,
 	}
 
 	lines, err := lib.List(sinceDate, untilDate, debug, auth)

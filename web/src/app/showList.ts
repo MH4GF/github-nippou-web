@@ -1,9 +1,8 @@
 "use server";
 
-import { getServerSession } from "../_auth/getServerSession";
+import { getServerSession } from "./_auth/getServerSession";
 
 export const showList = async () => {
-  console.log("showList");
   const session = await getServerSession();
   const user = session?.user.login;
   const token = session?.user.accessToken;

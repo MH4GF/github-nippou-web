@@ -1,19 +1,35 @@
 "use client";
 
+import { SessionProvider, useSession } from "next-auth/react";
 import { Button } from "./_components";
 import { showList } from "./showList";
 import {
   experimental_useFormState as useFormState,
   experimental_useFormStatus as useFormStatus,
 } from "react-dom";
+import Link from "next/link";
 
 function SubmitButton() {
+  const { status } = useSession();
+  const isLoading = status === "loading";
+  const isUnAuthenticated = status === "unauthenticated";
   const { pending } = useFormStatus();
 
-  return <Button isLoading={pending} type="submit" />;
+  return (
+    <>
+      {isUnAuthenticated && (
+        <Link href="/api/auth/signin" className="hover:underline">ログインしてください</Link>
+      )}
+      <Button
+        isLoading={isLoading || pending}
+        type="submit"
+        disabled={isUnAuthenticated}
+      />
+    </>
+  );
 }
 
-export default function Home() {
+function Home() {
   const [state, formAction] = useFormState<{ result: string }>(showList, {
     result: "",
   });
@@ -46,5 +62,13 @@ export default function Home() {
         defaultValue={state.result}
       />
     </main>
+  );
+}
+
+export default function Page() {
+  return (
+    <SessionProvider>
+      <Home />
+    </SessionProvider>
   );
 }

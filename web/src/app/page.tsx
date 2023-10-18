@@ -7,61 +7,60 @@ import {
   experimental_useFormState as useFormState,
   experimental_useFormStatus as useFormStatus,
 } from "react-dom";
-import Link from "next/link";
+import { FC } from "react";
+import { Header } from "./_components/Header";
 
-function SubmitButton() {
-  const { status } = useSession();
-  const isLoading = status === "loading";
-  const isUnAuthenticated = status === "unauthenticated";
+type SubmitButtonProps = {
+  isLoading: boolean;
+  isDisabled: boolean;
+};
+
+const SubmitButton: FC<SubmitButtonProps> = ({ isLoading, isDisabled }) => {
   const { pending } = useFormStatus();
 
   return (
-    <>
-      {isUnAuthenticated && (
-        <Link href="/api/auth/signin" className="hover:underline">ログインしてください</Link>
-      )}
-      <Button
-        isLoading={isLoading || pending}
-        type="submit"
-        disabled={isUnAuthenticated}
-      />
-    </>
+    <Button
+      isLoading={isLoading || pending}
+      type="submit"
+      isDisabled={isDisabled}
+    >
+      Run
+    </Button>
   );
-}
+};
 
 function Home() {
+  const { status, data } = useSession();
+  const isLoading = status === "loading";
+  const isUnAuthenticated = status === "unauthenticated";
   const [state, formAction] = useFormState<{ result: string }>(showList, {
     result: "",
   });
 
   return (
-    <main className="mx-auto max-w-7xl sm:px-6 lg:px-8 grid gap-4">
-      <div className="md:flex md:items-center md:justify-between">
-        <div className="min-w-0 flex-1">
-          <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
-            github-nippou
-          </h2>
-        </div>
-      </div>
-      <form action={formAction}>
-        <SubmitButton />
-      </form>
-      <label
-        htmlFor="result"
-        className="block text-sm font-medium leading-6 text-gray-900"
-      >
-        結果
-      </label>
-      <textarea
-        name="result"
-        id="result"
-        rows={8}
-        className="block w-full rounded-md border-0 p-1.5 text-gray-900
-         shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400
-          focus:ring-2 focus:ring-inset focus:ring-cyan-600 sm:text-sm sm:leading-6"
-        defaultValue={state.result}
-      />
-    </main>
+    <div className="min-h-full">
+      <Header data={data} isUnAuthenticated={isUnAuthenticated} />
+      <main className="mx-auto max-w-7xl sm:px-6 lg:px-8 sm:py-4 grid gap-2">
+        <form action={formAction}>
+          <SubmitButton isLoading={isLoading} isDisabled={isUnAuthenticated} />
+        </form>
+        <label
+          htmlFor="result"
+          className="block text-sm font-medium leading-6 text-gray-900"
+        >
+          Result
+        </label>
+        <textarea
+          name="result"
+          id="result"
+          rows={8}
+          className="block w-full rounded-md border-0 p-1.5 text-gray-900
+          shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400
+           focus:ring-2 focus:ring-inset focus:ring-cyan-600 sm:text-sm sm:leading-6"
+          defaultValue={state.result}
+        />
+      </main>
+    </div>
   );
 }
 

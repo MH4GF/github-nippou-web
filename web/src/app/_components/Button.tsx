@@ -2,23 +2,29 @@ import { ComponentProps, FC } from "react";
 
 type BaseProps = ComponentProps<"button">;
 
-const BaseButton: FC<BaseProps> = (props) => {
+const BaseButton: FC<BaseProps> = ({ className, ...props }) => {
   return (
     <button
       type="button"
-      className="text-white bg-cyan-600 hover:bg-cyan-500 focus:ring-4
-         focus:outline-none focus:ring-cyan-300 font-medium rounded
-          text-sm px-3.5 py-2.5 text-center mr-2 inline-flex items-center"
+      className={`rounded-md bg-slate-700 px-3.5 py-2.5 text-sm font-semibold text-white
+                 shadow-sm focus-visible:outline focus-visible:outline-2
+                 focus-visible:outline-offset-2 focus-visible:outline-slate-700 ${className}`}
       {...props}
     />
   );
 };
 
-type Props = BaseProps & {
-  isLoading: boolean;
+type Props = Omit<BaseProps, "disabled"> & {
+  isLoading?: boolean;
+  isDisabled?: boolean;
 };
 
-export const Button: FC<Props> = ({ isLoading, ...rest }) => {
+export const Button: FC<Props> = ({
+  isLoading,
+  isDisabled,
+  children,
+  ...rest
+}) => {
   if (isLoading) {
     return (
       <BaseButton disabled {...rest}>
@@ -44,5 +50,17 @@ export const Button: FC<Props> = ({ isLoading, ...rest }) => {
     );
   }
 
-  return <BaseButton {...rest}>実行</BaseButton>;
+  if (isDisabled) {
+    return (
+      <BaseButton disabled className="bg-slate-400" {...rest}>
+        {children}
+      </BaseButton>
+    );
+  }
+
+  return (
+    <BaseButton className="hover:bg-slate-800" {...rest}>
+      {children}
+    </BaseButton>
+  );
 };

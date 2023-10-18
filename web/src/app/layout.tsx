@@ -12,8 +12,8 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ja">
-      <body>{children}</body>
+    <html lang="ja" className="h-full bg-gray-100">
+      <body className="h-full">{children}</body>
     </html>
   );
 }

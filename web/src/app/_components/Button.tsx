@@ -6,9 +6,9 @@ const BaseButton: FC<BaseProps> = ({ className, ...props }) => {
   return (
     <button
       type="button"
-      className={`rounded-md bg-slate-700 px-3.5 py-2.5 text-sm font-semibold text-white
+      className={`${className} rounded-md px-3.5 py-2.5 text-sm font-semibold text-white
                  shadow-sm focus-visible:outline focus-visible:outline-2
-                 focus-visible:outline-offset-2 focus-visible:outline-slate-700 ${className}`}
+                 focus-visible:outline-offset-2 focus-visible:outline-slate-700`}
       {...props}
     />
   );
@@ -27,7 +27,7 @@ export const Button: FC<Props> = ({
 }) => {
   if (isLoading) {
     return (
-      <BaseButton disabled {...rest}>
+      <BaseButton disabled className="bg-slate-700" {...rest}>
         <svg
           aria-hidden="true"
           role="status"
@@ -59,7 +59,7 @@ export const Button: FC<Props> = ({
   }
 
   return (
-    <BaseButton className="hover:bg-slate-800" {...rest}>
+    <BaseButton className="bg-slate-700 hover:bg-slate-800" {...rest}>
       {children}
     </BaseButton>
   );

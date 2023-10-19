@@ -22,13 +22,15 @@ func rootHandler(w http.ResponseWriter, r *http.Request) {
 	queryParams := r.URL.Query()
 	user := queryParams.Get("user")
 	token := queryParams.Get("token")
+	settingsGistId := queryParams.Get("settings_gist_id")
 	debug := false
 	nowDate := time.Now().Format("20060102")
 	sinceDate := nowDate
 	untilDate := nowDate
 	auth := lib.Auth{
-		User:        user,
-		AccessToken: token,
+		User:           user,
+		AccessToken:    token,
+		SettingsGistId: settingsGistId,
 	}
 
 	lines, err := lib.List(sinceDate, untilDate, debug, auth)

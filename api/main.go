@@ -57,6 +57,9 @@ func main() {
 	http.HandleFunc("/", rootHandler)
 	http.HandleFunc("/healthz", healthCheckHandler)
 	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
 	addr := ":" + port
 	fmt.Println("Listening on port " + port)
 	http.ListenAndServe(addr, nil)

@@ -4,6 +4,8 @@ github.com/MH4GF/github-nippou v1.2.1-0.20231017000833-cae0455b4773 h1:/h6w7SYG+
 github.com/MH4GF/github-nippou v1.2.1-0.20231017000833-cae0455b4773/go.mod h1:tBv+zwq6SYXLFvZQ2tRIF0njmlBfZ1F79NfpofXzsIQ=
 github.com/MH4GF/github-nippou v1.2.1-0.20231017002847-3a5512161030 h1:vD797wXLTffBTY/bpJM9ptrTSJh9ZUaj3HQNypFNDB4=
 github.com/MH4GF/github-nippou v1.2.1-0.20231017002847-3a5512161030/go.mod h1:tBv+zwq6SYXLFvZQ2tRIF0njmlBfZ1F79NfpofXzsIQ=
+github.com/MH4GF/github-nippou v1.2.1-0.20231019124611-57e518cad164 h1:aPixVuyWGbwrRAmJQd5oqqPNj/CNNlo+oTkLr27B1nc=
+github.com/MH4GF/github-nippou v1.2.1-0.20231019124611-57e518cad164/go.mod h1:tBv+zwq6SYXLFvZQ2tRIF0njmlBfZ1F79NfpofXzsIQ=
 github.com/cpuguy83/go-md2man/v2 v2.0.2/go.mod h1:tgQtvFlXSQOSOSIRvRPT7W67SCa46tRHOmNcaadrF8o=
 github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ33E=
 github.com/golang/protobuf v1.3.1/go.mod h1:6lQm79b+lXiMfvg/cZm0SGofjICqVBUtrP5yJMmIC1U=

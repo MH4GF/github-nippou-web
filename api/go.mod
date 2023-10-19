@@ -2,7 +2,7 @@ module mh4gf/github-nippou-web
 
 go 1.21.2
 
-require github.com/MH4GF/github-nippou v1.2.1-0.20231017002847-3a5512161030
+require github.com/MH4GF/github-nippou v1.2.1-0.20231019124611-57e518cad164
 
 require (
 	github.com/golang/protobuf v1.5.3 // indirect

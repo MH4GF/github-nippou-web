@@ -1,1 +1,1 @@
-export * from "./GistIdInput"
+export * from './GistIdInput'

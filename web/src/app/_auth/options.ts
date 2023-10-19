@@ -1,32 +1,32 @@
-import { AuthOptions } from "next-auth";
-import GithubProvider from "next-auth/providers/github";
+import { AuthOptions } from 'next-auth'
+import GithubProvider from 'next-auth/providers/github'
 
 export const authOptions: AuthOptions = {
   providers: [
     GithubProvider({
-      clientId: process.env.GITHUB_OAUTH_APP_CLIENT_ID ?? "",
-      clientSecret: process.env.GITHUB_OAUTH_APP_CLIENT_SECRET ?? "",
+      clientId: process.env.GITHUB_OAUTH_APP_CLIENT_ID ?? '',
+      clientSecret: process.env.GITHUB_OAUTH_APP_CLIENT_SECRET ?? '',
       authorization: {
         params: {
-          scope: "repo",
+          scope: 'repo',
         },
       },
     }),
   ],
   callbacks: {
     async session({ session, token }) {
-      session.user.accessToken = token.accessToken;
-      session.user.login = token.login;
+      session.user.accessToken = token.accessToken
+      session.user.login = token.login
 
-      return session;
+      return session
     },
     async jwt({ token, account, profile }) {
       if (account) {
-        token.accessToken = account.access_token;
+        token.accessToken = account.access_token
         // @ts-ignore
-        token.login = profile?.login;
+        token.login = profile?.login
       }
-      return token;
+      return token
     },
   },
-};
+}

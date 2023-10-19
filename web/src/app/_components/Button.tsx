@@ -1,6 +1,6 @@
-import { ComponentProps, FC } from "react";
+import { ComponentProps, FC } from 'react'
 
-type BaseProps = ComponentProps<"button">;
+type BaseProps = ComponentProps<'button'>
 
 const BaseButton: FC<BaseProps> = ({ className, ...props }) => {
   return (
@@ -11,20 +11,15 @@ const BaseButton: FC<BaseProps> = ({ className, ...props }) => {
                  focus-visible:outline-offset-2 focus-visible:outline-slate-700`}
       {...props}
     />
-  );
-};
+  )
+}
 
-type Props = Omit<BaseProps, "disabled"> & {
-  isLoading?: boolean;
-  isDisabled?: boolean;
-};
+type Props = Omit<BaseProps, 'disabled'> & {
+  isLoading?: boolean
+  isDisabled?: boolean
+}
 
-export const Button: FC<Props> = ({
-  isLoading,
-  isDisabled,
-  children,
-  ...rest
-}) => {
+export const Button: FC<Props> = ({ isLoading, isDisabled, children, ...rest }) => {
   if (isLoading) {
     return (
       <BaseButton disabled className="bg-slate-700" {...rest}>
@@ -47,7 +42,7 @@ export const Button: FC<Props> = ({
         </svg>
         Loading...
       </BaseButton>
-    );
+    )
   }
 
   if (isDisabled) {
@@ -55,12 +50,12 @@ export const Button: FC<Props> = ({
       <BaseButton disabled className="bg-slate-400" {...rest}>
         {children}
       </BaseButton>
-    );
+    )
   }
 
   return (
     <BaseButton className="bg-slate-700 hover:bg-slate-800" {...rest}>
       {children}
     </BaseButton>
-  );
-};
+  )
+}

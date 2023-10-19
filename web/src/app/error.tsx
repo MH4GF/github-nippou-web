@@ -1,6 +1,6 @@
-"use client";
+'use client'
 
-import Link from "next/link";
+import Link from 'next/link'
 
 export default function Error() {
   return (
@@ -21,5 +21,5 @@ export default function Error() {
         に教えてください！
       </p>
     </div>
-  );
+  )
 }

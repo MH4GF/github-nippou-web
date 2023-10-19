@@ -1,12 +1,12 @@
-import { Session } from "next-auth";
-import { FC } from "react";
-import { Button } from ".";
-import Link from "next/link";
+import { Session } from 'next-auth'
+import { FC } from 'react'
+import { Button } from '.'
+import Link from 'next/link'
 
 type UserInfoProps = {
-  login: string;
-  image: string;
-};
+  login: string
+  image: string
+}
 
 const Loading = () => {
   return (
@@ -19,8 +19,8 @@ const Loading = () => {
     >
       <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
     </svg>
-  );
-};
+  )
+}
 
 const UserInfo: FC<UserInfoProps> = ({ login, image }) => {
   return (
@@ -32,8 +32,8 @@ const UserInfo: FC<UserInfoProps> = ({ login, image }) => {
         alt=""
       />
     </>
-  );
-};
+  )
+}
 
 const UnAuthenticated = () => {
   return (
@@ -43,17 +43,17 @@ const UnAuthenticated = () => {
         <Button>Sign in</Button>
       </Link>
     </>
-  );
-};
+  )
+}
 
 type Props = {
-  data: Session | null;
-  isUnAuthenticated: boolean;
-};
+  data: Session | null
+  isUnAuthenticated: boolean
+}
 
 export const Header: FC<Props> = ({ data, isUnAuthenticated }) => {
-  const login = data?.user.login;
-  const image = data?.user.image;
+  const login = data?.user.login
+  const image = data?.user.image
 
   return (
     <nav className="bg-white shadow-sm">
@@ -78,5 +78,5 @@ export const Header: FC<Props> = ({ data, isUnAuthenticated }) => {
         </div>
       </div>
     </nav>
-  );
-};
+  )
+}

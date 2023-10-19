@@ -1,19 +1,13 @@
-import { useLocalStorageState } from "ahooks";
+import { useLocalStorageState } from 'ahooks'
 
 export const GistIdInput = () => {
-  const [gistId, setGistId] = useLocalStorageState<string | undefined>(
-    "gistId",
-    {
-      defaultValue: "",
-    }
-  );
+  const [gistId, setGistId] = useLocalStorageState<string | undefined>('gistId', {
+    defaultValue: '',
+  })
 
   return (
     <div>
-      <label
-        htmlFor="settingGistId"
-        className="block text-sm font-medium leading-6 text-gray-900"
-      >
+      <label htmlFor="settingGistId" className="block text-sm font-medium leading-6 text-gray-900">
         Settings Gist ID(for customizing output format)
       </label>
       <div className="mt-2">
@@ -26,5 +20,5 @@ export const GistIdInput = () => {
         />
       </div>
     </div>
-  );
-};
+  )
+}

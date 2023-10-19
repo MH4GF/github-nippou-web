@@ -1,41 +1,37 @@
-"use client";
+'use client'
 
-import { SessionProvider, useSession } from "next-auth/react";
-import { Button } from "./_components";
-import { showList } from "./showList";
+import { SessionProvider, useSession } from 'next-auth/react'
+import { Button } from './_components'
+import { showList } from './showList'
 import {
   experimental_useFormState as useFormState,
   experimental_useFormStatus as useFormStatus,
-} from "react-dom";
-import { FC } from "react";
-import { Header, GistIdInput } from "./_components";
+} from 'react-dom'
+import { FC } from 'react'
+import { Header, GistIdInput } from './_components'
 
 type SubmitButtonProps = {
-  isLoading: boolean;
-  isDisabled: boolean;
-};
+  isLoading: boolean
+  isDisabled: boolean
+}
 
 const SubmitButton: FC<SubmitButtonProps> = ({ isLoading, isDisabled }) => {
-  const { pending } = useFormStatus();
+  const { pending } = useFormStatus()
 
   return (
-    <Button
-      isLoading={isLoading || pending}
-      type="submit"
-      isDisabled={isDisabled}
-    >
+    <Button isLoading={isLoading || pending} type="submit" isDisabled={isDisabled}>
       Run
     </Button>
-  );
-};
+  )
+}
 
 function Home() {
-  const { status, data } = useSession();
-  const isLoading = status === "loading";
-  const isUnAuthenticated = status === "unauthenticated";
+  const { status, data } = useSession()
+  const isLoading = status === 'loading'
+  const isUnAuthenticated = status === 'unauthenticated'
   const [state, formAction] = useFormState(showList, {
-    result: "",
-  });
+    result: '',
+  })
 
   return (
     <div className="min-h-full">
@@ -47,17 +43,11 @@ function Home() {
             <GistIdInput />
           </details>
           <div>
-            <SubmitButton
-              isLoading={isLoading}
-              isDisabled={isUnAuthenticated}
-            />
+            <SubmitButton isLoading={isLoading} isDisabled={isUnAuthenticated} />
           </div>
         </form>
         <div>
-          <label
-            htmlFor="result"
-            className="block text-sm font-medium leading-6 text-gray-900"
-          >
+          <label htmlFor="result" className="block text-sm font-medium leading-6 text-gray-900">
             Result
           </label>
           <textarea
@@ -72,7 +62,7 @@ function Home() {
         </div>
       </main>
     </div>
-  );
+  )
 }
 
 export default function Page() {
@@ -80,5 +70,5 @@ export default function Page() {
     <SessionProvider>
       <Home />
     </SessionProvider>
-  );
+  )
 }

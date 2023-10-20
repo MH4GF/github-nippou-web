@@ -6,7 +6,9 @@
     "build": "next build",
     "dev": "next dev",
     "format": "prettier --cache --write .",
-    "lint": "next lint",
+    "lint": "conc -c auto pnpm:lint:*",
+    "lint:next": "next lint",
+    "lint:prettier": "prettier --cache --check .",
     "start": "next start"
   },
   "prettier": "@mh4gf/configs/prettier",

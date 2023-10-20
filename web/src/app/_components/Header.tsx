@@ -2,6 +2,7 @@ import { Session } from 'next-auth'
 import { FC } from 'react'
 import { Button } from '.'
 import Link from 'next/link'
+import Image from 'next/image'
 
 type UserInfoProps = {
   login: string
@@ -26,10 +27,12 @@ const UserInfo: FC<UserInfoProps> = ({ login, image }) => {
   return (
     <>
       <span className="text-slate-700">{login}</span>
-      <img
-        className="h-8 w-8 rounded-full relative flex rounded-full bg-white text-sm"
+      <Image
+        width="32"
+        height="32"
+        className="h-8 w-8 relative flex rounded-full bg-white text-sm"
         src={image}
-        alt=""
+        alt="user image"
       />
     </>
   )

@@ -23,6 +23,9 @@ dependencies:
   react-dom:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
+  valibot:
+    specifier: ^0.19.0
+    version: 0.19.0
 
 devDependencies:
   '@mh4gf/configs':
@@ -4681,6 +4684,13 @@ packages:
         integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==,
       }
     hasBin: true
+    dev: false
+
+  /valibot@0.19.0:
+    resolution:
+      {
+        integrity: sha512-vzeuctzVirzoiDN9BTc4GludHaSgFYoy6AnbHOjfBUbX0DibqKuNCr2Ti4ox8eLdBdDSEZSZ3LwXZgjL6aE4RQ==,
+      }
     dev: false
 
   /watchpack@2.4.0:

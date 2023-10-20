@@ -20,7 +20,8 @@
     "next": "13.5.4",
     "next-auth": "^4.23.2",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "valibot": "^0.19.0"
   },
   "devDependencies": {
     "@mh4gf/configs": "^0.3.0",

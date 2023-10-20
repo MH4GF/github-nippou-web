@@ -1,11 +1,11 @@
 package main
 
 import (
-	"fmt"
-	"log"
 	"mh4gf/github-nippou-web/handlers"
 	"net/http"
 	"os"
+
+	"golang.org/x/exp/slog"
 )
 
 func main() {
@@ -16,8 +16,14 @@ func main() {
 		port = "8080"
 	}
 	addr := ":" + port
-	fmt.Println("Listening on port " + port)
+	slog.Info("Listening on port " + port)
 	if err := http.ListenAndServe(addr, nil); err != nil {
-		log.Fatal(err)
+		slog.Error(err.Error())
+		os.Exit(1)
 	}
+}
+
+func init() {
+	logger := slog.New(slog.NewJSONHandler(os.Stdout, nil))
+	slog.SetDefault(logger)
 }

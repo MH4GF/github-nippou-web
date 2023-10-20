@@ -1,8 +1,14 @@
 'use server'
 
+import { object, parse, string } from 'valibot'
+
 import { getServerSession } from './_auth/getServerSession'
 
-export const showList = async (_prevState: any, formData: FormData) => {
+const responseSchema = object({
+  result: string(),
+})
+
+export const showList = async (_prevState: unknown, formData: FormData) => {
   const session = await getServerSession()
   const user = session?.user.login
   const token = session?.user.accessToken
@@ -16,6 +22,7 @@ export const showList = async (_prevState: any, formData: FormData) => {
   url.searchParams.set('token', token)
   url.searchParams.set('settings_gist_id', settingsGistId)
   const response = await fetch(url)
-  const json = await response.json()
-  return { result: json.result }
+  // TODO: handle errors
+  const { result } = parse(responseSchema, await response.json())
+  return { result }
 }

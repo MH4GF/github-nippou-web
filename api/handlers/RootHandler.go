@@ -2,11 +2,11 @@ package handlers
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"time"
 
 	"github.com/MH4GF/github-nippou/lib"
+	"golang.org/x/exp/slog"
 )
 
 type ResponseBody struct {
@@ -30,7 +30,7 @@ func RootHandler(w http.ResponseWriter, r *http.Request) {
 
 	lines, err := lib.List(sinceDate, untilDate, debug, auth)
 	if err != nil {
-		fmt.Println(err)
+		slog.Error(err.Error())
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		return
 	}

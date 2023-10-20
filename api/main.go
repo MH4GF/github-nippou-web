@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"mh4gf/github-nippou-web/handlers"
 	"net/http"
 	"os"
@@ -16,5 +17,7 @@ func main() {
 	}
 	addr := ":" + port
 	fmt.Println("Listening on port " + port)
-	http.ListenAndServe(addr, nil)
+	if err := http.ListenAndServe(addr, nil); err != nil {
+		log.Fatal(err)
+	}
 }

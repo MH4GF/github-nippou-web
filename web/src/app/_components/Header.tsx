@@ -13,7 +13,7 @@ interface UserInfoProps {
 const Loading = () => {
   return (
     <svg
-      className="w-8 h-8 text-slate-400 animate-pulse"
+      className="h-8 w-8 animate-pulse text-slate-400"
       aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"
       fill="currentColor"
@@ -31,7 +31,7 @@ const UserInfo: FC<UserInfoProps> = ({ login, image }) => {
       <Image
         width="32"
         height="32"
-        className="h-8 w-8 relative flex rounded-full bg-white text-sm"
+        className="relative flex h-8 w-8 rounded-full bg-white text-sm"
         src={image}
         alt="user image"
       />
@@ -64,13 +64,13 @@ export const Header: FC<Props> = ({ data, isUnAuthenticated }) => {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ">
         <div className="flex h-16 justify-between">
           <div className="flex">
-            <div className="flex flex-shrink-0 items-center">
+            <div className="flex shrink-0 items-center">
               <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
                 github-nippou
               </h2>
             </div>
           </div>
-          <div className="sm:ml-6 sm:flex sm:items-center gap-2">
+          <div className="gap-2 sm:ml-6 sm:flex sm:items-center">
             {isUnAuthenticated ? (
               <UnAuthenticated />
             ) : login && image ? (

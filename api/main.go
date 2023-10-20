@@ -2,6 +2,7 @@ package main
 
 import (
 	"mh4gf/github-nippou-web/handlers"
+	"mh4gf/github-nippou-web/middlewares"
 	"net/http"
 	"os"
 
@@ -9,7 +10,7 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/", handlers.RootHandler)
+	http.HandleFunc("/", middlewares.Logging(handlers.RootHandler))
 	http.HandleFunc("/healthz", handlers.HealthCheckHandler)
 	port := os.Getenv("PORT")
 	if port == "" {

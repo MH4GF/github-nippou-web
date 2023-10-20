@@ -1,16 +1,16 @@
 'use client'
 
 import { SessionProvider, useSession } from 'next-auth/react'
-import { Button } from './_components'
-import { showList } from './showList'
+import type { FC } from 'react'
 import {
   experimental_useFormState as useFormState,
   experimental_useFormStatus as useFormStatus,
 } from 'react-dom'
-import { FC } from 'react'
-import { Header, GistIdInput } from './_components'
 
-type SubmitButtonProps = {
+import { Button, Header, GistIdInput } from './_components'
+import { showList } from './showList'
+
+interface SubmitButtonProps {
   isLoading: boolean
   isDisabled: boolean
 }

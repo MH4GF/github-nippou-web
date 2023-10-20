@@ -1,4 +1,4 @@
-import { AuthOptions } from 'next-auth'
+import type { AuthOptions } from 'next-auth'
 import GithubProvider from 'next-auth/providers/github'
 
 export const authOptions: AuthOptions = {
@@ -23,7 +23,7 @@ export const authOptions: AuthOptions = {
     async jwt({ token, account, profile }) {
       if (account) {
         token.accessToken = account.access_token
-        // @ts-ignore
+        // @ts-expect-error
         token.login = profile?.login
       }
       return token

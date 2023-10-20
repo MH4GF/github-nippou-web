@@ -5,7 +5,9 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
-    "format": "prettier --cache --write .",
+    "format": "conc -c auto pnpm:format:*",
+    "format:eslint": "eslint --fix .",
+    "format:prettier": "prettier --cache --write .",
     "lint": "conc -c auto pnpm:lint:*",
     "lint:next": "next lint",
     "lint:prettier": "prettier --cache --check .",

@@ -1,10 +1,11 @@
-import { Session } from 'next-auth'
-import { FC } from 'react'
-import { Button } from '.'
-import Link from 'next/link'
 import Image from 'next/image'
+import Link from 'next/link'
+import type { Session } from 'next-auth'
+import type { FC } from 'react'
 
-type UserInfoProps = {
+import { Button } from '.'
+
+interface UserInfoProps {
   login: string
   image: string
 }
@@ -49,7 +50,7 @@ const UnAuthenticated = () => {
   )
 }
 
-type Props = {
+interface Props {
   data: Session | null
   isUnAuthenticated: boolean
 }

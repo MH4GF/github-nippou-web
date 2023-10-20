@@ -1,6 +1,6 @@
 module mh4gf/github-nippou-web
 
-go 1.21.2
+go 1.21
 
 require github.com/MH4GF/github-nippou v1.2.1-0.20231020002324-052f938997fe
 

@@ -11,9 +11,6 @@ dependencies:
   ahooks:
     specifier: ^3.7.8
     version: 3.7.8(react@18.2.0)
-  gojs:
-    specifier: ^2.3.11
-    version: 2.3.11
   next:
     specifier: 13.5.4
     version: 13.5.4(react-dom@18.2.0)(react@18.2.0)
@@ -2117,13 +2114,6 @@ packages:
       merge2: 1.4.1
       slash: 4.0.0
     dev: true
-
-  /gojs@2.3.11:
-    resolution:
-      {
-        integrity: sha512-Sdl61fI50m8pnTz0BCv7Yp1qMJ0pvCus84I0ELL+qOD+HS/V7/CrTmxNW0bLAA/yXvgbuB1wVWOcXphtcXURUA==,
-      }
-    dev: false
 
   /gopd@1.0.1:
     resolution:

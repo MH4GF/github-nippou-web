@@ -1,16 +1,16 @@
 'use client'
 
 import { SessionProvider, useSession } from 'next-auth/react'
-import { Button } from './_components'
-import { showList } from './showList'
+import type { FC } from 'react'
 import {
   experimental_useFormState as useFormState,
   experimental_useFormStatus as useFormStatus,
 } from 'react-dom'
-import { FC } from 'react'
-import { Header, GistIdInput } from './_components'
 
-type SubmitButtonProps = {
+import { Button, Header, GistIdInput } from './_components'
+import { showList } from './showList'
+
+interface SubmitButtonProps {
   isLoading: boolean
   isDisabled: boolean
 }
@@ -36,7 +36,7 @@ function Home() {
   return (
     <div className="min-h-full">
       <Header data={data} isUnAuthenticated={isUnAuthenticated} />
-      <main className="mx-auto max-w-7xl sm:px-6 lg:px-8 sm:py-4 grid gap-6">
+      <main className="mx-auto grid max-w-7xl gap-6 sm:px-6 sm:py-4 lg:px-8">
         <form action={formAction} className="grid gap-2">
           <details>
             <summary>Advanced Settings</summary>

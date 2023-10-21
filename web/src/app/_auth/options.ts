@@ -1,4 +1,4 @@
-import { AuthOptions } from 'next-auth'
+import type { AuthOptions } from 'next-auth'
 import GithubProvider from 'next-auth/providers/github'
 
 export const authOptions: AuthOptions = {
@@ -14,16 +14,17 @@ export const authOptions: AuthOptions = {
     }),
   ],
   callbacks: {
-    async session({ session, token }) {
+    session({ session, token }) {
       session.user.accessToken = token.accessToken
       session.user.login = token.login
 
       return session
     },
-    async jwt({ token, account, profile }) {
+    jwt({ token, account, profile }) {
       if (account) {
         token.accessToken = account.access_token
-        // @ts-ignore
+        // @ts-expect-error ... GitHubProfile
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         token.login = profile?.login
       }
       return token

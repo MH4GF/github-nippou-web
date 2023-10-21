@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: "Print today's your GitHub action",
 }
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ja" className="h-full bg-gray-100">
       <body className="h-full">{children}</body>

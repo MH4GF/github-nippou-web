@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export default function Error() {
   return (
-    <div className="text-center grid gap-4">
+    <div className="grid gap-4 text-center">
       <h2 className="text-2xl">Something went wrong!</h2>
       <p>
         このサイトは無料のサーバーを利用しているので、アクセスがないと自動で終了し、

@@ -1,0 +1,41 @@
+name: ci
+
+on:
+  push:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  web-lint:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: MH4GF/shared-config/.github/composite-actions/setup-pnpm@main
+        with:
+          node-version-file: web/.node-version
+          pnpm-version: "8.9.2"
+          working-directory: web
+      - run: pnpm i
+      - run: pnpm lint
+
+  api-lint:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: api
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v4
+        with:
+          go-version-file: './api/go.mod'
+      - run: go vet ./...
+      - uses: dominikh/staticcheck-action@v1.3.0
+        with:
+          version: "2023.1.3"
+          working-directory: ./api
+          install-go: false

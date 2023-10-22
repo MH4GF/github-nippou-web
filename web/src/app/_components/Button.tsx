@@ -1,3 +1,4 @@
+import { clsx } from 'clsx'
 import type { ComponentProps, FC } from 'react'
 
 type BaseProps = ComponentProps<'button'>
@@ -6,9 +7,12 @@ const BaseButton: FC<BaseProps> = ({ className, ...props }) => {
   return (
     <button
       type="button"
-      className={`${className ?? ''} rounded-md px-3.5 py-2.5 text-sm font-semibold text-white
-                 shadow-sm focus-visible:outline focus-visible:outline-2
-                 focus-visible:outline-offset-2 focus-visible:outline-slate-700`}
+      className={clsx(
+        className,
+        `rounded-md px-3.5 py-2.5 text-sm font-semibold text-white
+         shadow-sm focus-visible:outline focus-visible:outline-2
+         focus-visible:outline-offset-2 focus-visible:outline-slate-700`,
+      )}
       {...props}
     />
   )

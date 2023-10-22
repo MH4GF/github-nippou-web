@@ -2,7 +2,7 @@ import { clsx } from 'clsx'
 import type { ComponentProps, FC } from 'react'
 import { match } from 'ts-pattern'
 
-type Variant = 'primary'
+type Variant = 'primary' | 'secondary'
 
 type BaseProps = Omit<ComponentProps<'button'>, 'className'> & {
   variant?: Variant
@@ -10,10 +10,12 @@ type BaseProps = Omit<ComponentProps<'button'>, 'className'> & {
 
 const BaseButton: FC<BaseProps> = ({ variant = 'primary', disabled, ...props }) => {
   const disabledColors = match(variant)
-    .with('primary', () => 'bg-slate-400')
+    .with('primary', () => 'bg-slate-400 text-white')
+    .with('secondary', () => 'text-slate-400 border-2 border-slate-700 hover:bg-slate-200')
     .exhaustive()
   const colors = match(variant)
-    .with('primary', () => 'bg-slate-700 hover:bg-slate-800')
+    .with('primary', () => 'bg-slate-700 hover:bg-slate-800 text-white')
+    .with('secondary', () => 'text-slate-700 border-2 border-slate-700 hover:bg-slate-200')
     .exhaustive()
 
   return (
@@ -22,9 +24,8 @@ const BaseButton: FC<BaseProps> = ({ variant = 'primary', disabled, ...props }) 
       disabled={disabled}
       className={clsx(
         disabled ? disabledColors : colors,
-        `rounded-md px-3.5 py-2.5 text-sm font-semibold text-white
-         shadow-sm focus-visible:outline focus-visible:outline-2
-         focus-visible:outline-offset-2 focus-visible:outline-slate-700`,
+        `rounded-md px-3.5 py-2.5 text-sm font-semibold
+         shadow-sm focus-visible:outline focus-visible:outline-slate-700`,
       )}
       {...props}
     />

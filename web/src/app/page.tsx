@@ -7,7 +7,7 @@ import {
   experimental_useFormStatus as useFormStatus,
 } from 'react-dom'
 
-import { Button, Header, GistIdInput } from './_components'
+import { Button, Header, GistIdInput, Alert } from './_components'
 import { CopyToClipboardButton } from './_features/CopyToClipboardButton'
 import { showList } from './showList'
 
@@ -31,6 +31,7 @@ function Home() {
   const isLoading = status === 'loading'
   const isUnAuthenticated = status === 'unauthenticated'
   const [state, formAction] = useFormState(showList, {
+    success: true,
     result: '',
   })
 
@@ -38,6 +39,7 @@ function Home() {
     <div className="min-h-full">
       <Header data={data} isUnAuthenticated={isUnAuthenticated} />
       <main className="mx-auto grid max-w-7xl gap-6 sm:px-6 sm:py-4 lg:px-8">
+        <div>{!state.success && <Alert>{state.error}</Alert>}</div>
         <form action={formAction} className="grid gap-2">
           <details>
             <summary>Advanced Settings</summary>
@@ -58,10 +60,10 @@ function Home() {
             className="block w-full rounded-md border-0 p-1.5 text-gray-900
           shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400
            focus:ring-2 focus:ring-inset focus:ring-slate-600 sm:text-sm sm:leading-6"
-            defaultValue={state.result}
+            defaultValue={state.success ? state.result : ''}
           />
           <div className="mt-2">
-            <CopyToClipboardButton text={state.result} />
+            <CopyToClipboardButton text={state.success ? state.result : ''} />
           </div>
         </div>
       </main>

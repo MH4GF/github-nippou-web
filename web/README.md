@@ -13,6 +13,8 @@ cp .env.local.sample .env.local
 pnpmで開発サーバーを起動
 
 ```
+corepack enable
+corepack prepare
 pnpm i
 pnpm dev
 ```

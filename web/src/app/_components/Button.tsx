@@ -1,14 +1,28 @@
 import { clsx } from 'clsx'
 import type { ComponentProps, FC } from 'react'
+import { match } from 'ts-pattern'
 
-type BaseProps = ComponentProps<'button'>
+type Variant = 'primary'
 
-const BaseButton: FC<BaseProps> = ({ className, ...props }) => {
+type BaseProps = ComponentProps<'button'> & {
+  variant?: Variant
+}
+
+const BaseButton: FC<BaseProps> = ({ className, variant = 'primary', disabled, ...props }) => {
+  const disabledColors = match(variant)
+    .with('primary', () => 'bg-slate-400')
+    .exhaustive()
+  const colors = match(variant)
+    .with('primary', () => 'bg-slate-700 hover:bg-slate-800')
+    .exhaustive()
+
   return (
     <button
       type="button"
+      disabled={disabled}
       className={clsx(
         className,
+        disabled ? disabledColors : colors,
         `rounded-md px-3.5 py-2.5 text-sm font-semibold text-white
          shadow-sm focus-visible:outline focus-visible:outline-2
          focus-visible:outline-offset-2 focus-visible:outline-slate-700`,
@@ -26,7 +40,7 @@ type Props = Omit<BaseProps, 'disabled'> & {
 export const Button: FC<Props> = ({ isLoading, isDisabled, children, ...rest }) => {
   if (isLoading) {
     return (
-      <BaseButton disabled className="bg-slate-700" {...rest}>
+      <BaseButton disabled {...rest}>
         <svg
           aria-hidden="true"
           role="status"
@@ -51,15 +65,11 @@ export const Button: FC<Props> = ({ isLoading, isDisabled, children, ...rest }) 
 
   if (isDisabled) {
     return (
-      <BaseButton disabled className="bg-slate-400" {...rest}>
+      <BaseButton disabled {...rest}>
         {children}
       </BaseButton>
     )
   }
 
-  return (
-    <BaseButton className="bg-slate-700 hover:bg-slate-800" {...rest}>
-      {children}
-    </BaseButton>
-  )
+  return <BaseButton {...rest}>{children}</BaseButton>
 }

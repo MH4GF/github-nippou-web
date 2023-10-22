@@ -31,7 +31,7 @@ func RootHandler(w http.ResponseWriter, r *http.Request) {
 	lines, err := lib.List(sinceDate, untilDate, debug, auth)
 	if err != nil {
 		slog.Error(err.Error())
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 	body := ResponseBody{Result: lines}

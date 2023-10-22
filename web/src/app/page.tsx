@@ -7,7 +7,7 @@ import {
   experimental_useFormStatus as useFormStatus,
 } from 'react-dom'
 
-import { Button, Header, GistIdInput, Alert } from './_components'
+import { Button, Header, GistIdInput, Alert, Textarea, Label } from './_components'
 import { CopyToClipboardButton } from './_features/CopyToClipboardButton'
 import { showList } from './showList'
 
@@ -50,16 +50,11 @@ function Home() {
           </div>
         </form>
         <div>
-          <label htmlFor="result" className="block text-sm font-medium leading-6 text-gray-900">
-            Result
-          </label>
-          <textarea
+          <Label htmlFor="result">Result</Label>
+          <Textarea
             name="result"
             id="result"
             rows={24}
-            className="block w-full rounded-md border-0 p-1.5 text-gray-900
-          shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400
-           focus:ring-2 focus:ring-inset focus:ring-slate-600 sm:text-sm sm:leading-6"
             defaultValue={state.success ? state.result : ''}
           />
           <div className="mt-2">

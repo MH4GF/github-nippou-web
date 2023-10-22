@@ -8,6 +8,7 @@ import {
 } from 'react-dom'
 
 import { Button, Header, GistIdInput } from './_components'
+import { CopyToClipboardButton } from './_features/CopyToClipboardButton'
 import { showList } from './showList'
 
 interface SubmitButtonProps {
@@ -59,6 +60,9 @@ function Home() {
            focus:ring-2 focus:ring-inset focus:ring-slate-600 sm:text-sm sm:leading-6"
             defaultValue={state.result}
           />
+          <div className="mt-2">
+            <CopyToClipboardButton text={state.result} />
+          </div>
         </div>
       </main>
     </div>

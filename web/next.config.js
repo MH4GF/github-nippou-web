@@ -1,3 +1,5 @@
+const pattycake = require('pattycake')
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
@@ -15,4 +17,4 @@ const nextConfig = {
   },
 }
 
-module.exports = nextConfig
+module.exports = pattycake.next(nextConfig)

@@ -17,10 +17,13 @@
   "dependencies": {
     "@tailwindcss/forms": "^0.5.6",
     "ahooks": "^3.7.8",
+    "clsx": "^2.0.0",
     "next": "13.5.4",
     "next-auth": "^4.23.2",
+    "pattycake": "^0.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "ts-pattern": "^5.0.5",
     "valibot": "^0.19.0"
   },
   "devDependencies": {

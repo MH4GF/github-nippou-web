@@ -4,11 +4,11 @@ import { match } from 'ts-pattern'
 
 type Variant = 'primary'
 
-type BaseProps = ComponentProps<'button'> & {
+type BaseProps = Omit<ComponentProps<'button'>, 'className'> & {
   variant?: Variant
 }
 
-const BaseButton: FC<BaseProps> = ({ className, variant = 'primary', disabled, ...props }) => {
+const BaseButton: FC<BaseProps> = ({ variant = 'primary', disabled, ...props }) => {
   const disabledColors = match(variant)
     .with('primary', () => 'bg-slate-400')
     .exhaustive()
@@ -21,7 +21,6 @@ const BaseButton: FC<BaseProps> = ({ className, variant = 'primary', disabled, .
       type="button"
       disabled={disabled}
       className={clsx(
-        className,
         disabled ? disabledColors : colors,
         `rounded-md px-3.5 py-2.5 text-sm font-semibold text-white
          shadow-sm focus-visible:outline focus-visible:outline-2

@@ -19,7 +19,7 @@ export const Tooltip: FC<Props> = ({ show: show }) => {
       `,
       )}
     >
-      Copied!!
+      Copied ✨
     </span>
   )
 }

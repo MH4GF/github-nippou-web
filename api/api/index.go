@@ -1,4 +1,4 @@
-package handlers
+package handler
 
 import (
 	"encoding/json"
@@ -9,11 +9,25 @@ import (
 	"golang.org/x/exp/slog"
 )
 
+func logging(r *http.Request) {
+	queryParams := r.URL.Query()
+	user := queryParams.Get("user")
+
+	slog.Info(
+		"logging",
+		slog.String("path", r.URL.Path),
+		slog.String("method", r.Method),
+		slog.String("user", user),
+	)
+}
+
 type ResponseBody struct {
 	Result string `json:"result"`
 }
 
-func RootHandler(w http.ResponseWriter, r *http.Request) {
+func Handler(w http.ResponseWriter, r *http.Request) {
+	logging(r)
+
 	queryParams := r.URL.Query()
 	user := queryParams.Get("user")
 	token := queryParams.Get("token")

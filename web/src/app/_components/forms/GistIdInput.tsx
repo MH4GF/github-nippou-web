@@ -1,4 +1,5 @@
 import { useLocalStorageState } from 'ahooks'
+import Link from 'next/link'
 
 import { Label } from './Label'
 
@@ -9,7 +10,17 @@ export const GistIdInput = () => {
 
   return (
     <div>
-      <Label htmlFor="settingsGistId">Settings Gist ID(for customizing output format)</Label>
+      <Label htmlFor="settingsGistId">
+        Settings Gist ID(for customizing output format).{' '}
+        <Link
+          href="https://github.com/masutaka/github-nippou#optional-customize-output-format"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline"
+        >
+          Read more
+        </Link>
+      </Label>
       <div className="mt-2">
         <input
           name="settingsGistId"

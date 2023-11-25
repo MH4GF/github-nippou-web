@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/MH4GF/github-nippou/lib"
+	"github.com/masutaka/github-nippou/v4/lib"
 	"golang.org/x/exp/slog"
 )
 
@@ -36,13 +36,9 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	nowDate := time.Now().Format("20060102")
 	sinceDate := nowDate
 	untilDate := nowDate
-	auth := lib.Auth{
-		User:           user,
-		AccessToken:    token,
-		SettingsGistId: settingsGistId,
-	}
 
-	lines, err := lib.List(sinceDate, untilDate, debug, auth)
+	list := lib.NewList(sinceDate, untilDate, user, token, settingsGistId, debug)
+	lines, err := list.Collect()
 	if err != nil {
 		slog.Error(err.Error())
 		http.Error(w, err.Error(), http.StatusInternalServerError)

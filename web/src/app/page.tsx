@@ -7,7 +7,7 @@ import {
   experimental_useFormStatus as useFormStatus,
 } from 'react-dom'
 
-import { Button, Header, GistIdInput, Alert, Textarea, Label } from './_components'
+import { Button, Header, GistIdInput, Alert, Textarea, Label, Footer } from './_components'
 import { CopyToClipboardButton } from './_features/CopyToClipboardButton'
 import { showList } from './showList'
 
@@ -62,6 +62,7 @@ function Home() {
           </div>
         </div>
       </main>
+      <Footer />
     </div>
   )
 }

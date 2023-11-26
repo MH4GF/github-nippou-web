@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { SessionProvider, useSession } from 'next-auth/react'
 import type { FC } from 'react'
 import {
@@ -38,8 +39,8 @@ function Home() {
   return (
     <div className="min-h-full">
       <Header data={data} isUnAuthenticated={isUnAuthenticated} />
-      <main className="mx-auto grid max-w-7xl gap-6 sm:px-6 sm:py-4 lg:px-8">
-        <div>{!state.success && <Alert>{state.error}</Alert>}</div>
+      <main className="mx-auto grid max-w-7xl gap-6 sm:p-6 lg:px-8">
+        {!state.success && <Alert>{state.error}</Alert>}
         <form action={formAction} className="grid gap-2">
           <details>
             <summary>Advanced Settings</summary>
@@ -54,12 +55,41 @@ function Home() {
           <Textarea
             name="result"
             id="result"
-            rows={24}
+            rows={20}
             defaultValue={state.success ? state.result : ''}
           />
           <div className="mt-2">
             <CopyToClipboardButton text={state.success ? state.result : ''} />
           </div>
+        </div>
+        <div>
+          <h3 className="text-xl font-bold">How to use github-nippou?</h3>
+          <p>
+            Print today&apos;s your GitHub activity for issues and pull requests.
+            <br />
+            This is a helpful when you write a daily report in reference to GitHub.
+            &quot;Nippou&quot; is a japanese word which means a daily report.
+            <br />
+            This site is based on{' '}
+            <Link
+              href="https://github.com/masutaka/github-nippou"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline"
+            >
+              github-nippou
+            </Link>
+            , a CLI tool created by{' '}
+            <Link
+              href="https://twitter.com/masutaka"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline"
+            >
+              @masutaka
+            </Link>
+            .
+          </p>
         </div>
       </main>
       <Footer />

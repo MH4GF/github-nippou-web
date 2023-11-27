@@ -13,15 +13,15 @@ import { CopyToClipboardButton } from './_features/CopyToClipboardButton'
 import { showList } from './showList'
 
 interface SubmitButtonProps {
-  isLoading: boolean
+  // isLoading: boolean
   isDisabled: boolean
 }
 
-const SubmitButton: FC<SubmitButtonProps> = ({ isLoading, isDisabled }) => {
+const SubmitButton: FC<SubmitButtonProps> = ({ isDisabled }) => {
   const { pending } = useFormStatus()
 
   return (
-    <Button isLoading={isLoading || pending} type="submit" isDisabled={isDisabled}>
+    <Button isLoading={pending} type="submit" isDisabled={isDisabled}>
       Run
     </Button>
   )
@@ -29,7 +29,7 @@ const SubmitButton: FC<SubmitButtonProps> = ({ isLoading, isDisabled }) => {
 
 function Home() {
   const { status, data } = useSession()
-  const isLoading = status === 'loading'
+  // const isLoading = status === 'loading'
   const isUnAuthenticated = status === 'unauthenticated'
   const [state, formAction] = useFormState(showList, {
     success: true,
@@ -47,7 +47,7 @@ function Home() {
             <GistIdInput />
           </details>
           <div>
-            <SubmitButton isLoading={isLoading} isDisabled={isUnAuthenticated} />
+            <SubmitButton isDisabled={isUnAuthenticated} />
           </div>
         </form>
         <div>

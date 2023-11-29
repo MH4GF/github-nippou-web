@@ -3,10 +3,7 @@
 import Link from 'next/link'
 import { SessionProvider, useSession } from 'next-auth/react'
 import type { FC } from 'react'
-import {
-  experimental_useFormState as useFormState,
-  experimental_useFormStatus as useFormStatus,
-} from 'react-dom'
+import { useFormStatus, useFormState } from 'react-dom'
 
 import { Button, Header, GistIdInput, Alert, Textarea, Label, Footer } from './_components'
 import { CopyToClipboardButton } from './_features/CopyToClipboardButton'

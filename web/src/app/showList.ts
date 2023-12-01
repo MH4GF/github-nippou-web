@@ -32,8 +32,7 @@ export const showList = async (_prevState: Result, formData: FormData): Promise<
     settingsGistId: formData.get('settingsGistId'),
   })
   if (!parsed.success) {
-    console.error(parsed.issues)
-    return { success: false, error: parsed.issues.join('\n') }
+    return { success: false, error: 'Invalid credentials' }
   }
   const { user, token, settingsGistId } = parsed.output
 
@@ -57,6 +56,6 @@ export const showList = async (_prevState: Result, formData: FormData): Promise<
       if (error instanceof Error) {
         return { success: false, error: error.message }
       }
-      return { success: false, error: '予期せぬエラーが発生しました' }
+      return { success: false, error: 'An unexpected error has occurred' }
     })
 }

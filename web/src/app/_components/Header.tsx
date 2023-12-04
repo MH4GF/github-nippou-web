@@ -1,6 +1,9 @@
+// useSessionを使うためClient Componentに
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
-import type { Session } from 'next-auth'
+import { SessionProvider, useSession } from 'next-auth/react'
 import type { FC } from 'react'
 
 import { Button } from '.'
@@ -50,12 +53,9 @@ const UnAuthenticated = () => {
   )
 }
 
-interface Props {
-  data: Session | null
-  isUnAuthenticated: boolean
-}
-
-export const Header: FC<Props> = ({ data, isUnAuthenticated }) => {
+const HeaderInner: FC = () => {
+  const { status, data } = useSession()
+  const isUnAuthenticated = status === 'unauthenticated'
   const login = data?.user.login
   const image = data?.user.image
 
@@ -82,5 +82,13 @@ export const Header: FC<Props> = ({ data, isUnAuthenticated }) => {
         </div>
       </div>
     </nav>
+  )
+}
+
+export const Header = () => {
+  return (
+    <SessionProvider>
+      <HeaderInner />
+    </SessionProvider>
   )
 }

@@ -1,5 +1,3 @@
-// GitHubStarButtonがClass Componentのため、Client Componentでしか呼び出せない
-'use client'
 import Link from 'next/link'
 
 import { GitHubStarButton } from './GitHubStarButton'

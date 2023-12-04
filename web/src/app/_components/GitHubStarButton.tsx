@@ -1,3 +1,5 @@
+// GitHubButtonがClass Componentのため、Client Componentでしか呼び出せない
+'use client'
 import GitHubButton from 'react-github-btn'
 
 export const GitHubStarButton = () => {

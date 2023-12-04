@@ -1,7 +1,7 @@
 import { useLocalStorageState } from 'ahooks'
 import Link from 'next/link'
 
-import { Label } from './Label'
+import { Label } from '../../_components'
 
 export const GistIdInput = () => {
   const [gistId, setGistId] = useLocalStorageState<string | undefined>('gistId', {

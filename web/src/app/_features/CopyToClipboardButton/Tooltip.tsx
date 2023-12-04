@@ -1,3 +1,6 @@
+// ブラウザ上で動的にクラスを差し替えたいためClient Componentに
+'use client'
+
 import clsx from 'clsx'
 import type { FC } from 'react'
 
@@ -5,7 +8,7 @@ interface Props {
   show: boolean
 }
 
-export const Tooltip: FC<Props> = ({ show: show }) => {
+export const Tooltip: FC<Props> = ({ show }) => {
   return (
     <span
       className={clsx(

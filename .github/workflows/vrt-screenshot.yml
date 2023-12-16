@@ -1,0 +1,38 @@
+name: VRT - Screenshots
+
+on:
+  deployment_status:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  screenshots:
+    if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+
+    container:
+      image: mcr.microsoft.com/playwright:v1.35.0-focal
+
+    defaults:
+      run:
+        working-directory: web
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: MH4GF/shared-config/.github/composite-actions/setup-pnpm@main
+        with:
+          node-version-file: web/.node-version
+          pnpm-version: "8.9.2"
+          working-directory: web
+
+      - run: pnpm i
+
+      - run: npx playwright test
+        env:
+          BASE_URL: ${{ github.event.deployment_status.environment_url }}

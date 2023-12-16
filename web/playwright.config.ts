@@ -1,7 +1,7 @@
 import { defineConfig, devices } from '@playwright/test'
 
 export default defineConfig({
-  testDir: './src/app/__vrt__',
+  testDir: './src/__vrt__',
   testMatch: '*.vrt.ts',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,

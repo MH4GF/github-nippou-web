@@ -16,7 +16,7 @@ jobs:
       contents: read
 
     container:
-      image: mcr.microsoft.com/playwright:v1.35.0-focal
+      image: mcr.microsoft.com/playwright:v1.40.1-focal
 
     defaults:
       run:
@@ -33,6 +33,11 @@ jobs:
 
       - run: pnpm i
 
-      - run: npx playwright test
+      - run: pnpm test:vrt:screenshots
         env:
           BASE_URL: ${{ github.event.deployment_status.environment_url }}
+
+      - uses: actions/cache/save@v3
+        with:
+          path: src/__vrt__/snapshots
+          key: vrt-${{ github.sha }}

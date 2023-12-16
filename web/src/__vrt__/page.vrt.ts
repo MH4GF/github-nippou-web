@@ -22,7 +22,7 @@ const targetPage: TargetPage = {
   path: '/',
 }
 
-test.describe('screenshot', () => {
+test.describe('screenshots', () => {
   test(targetPage.name, async ({ page }, testInfo) => {
     await screenshot(page, testInfo, targetPage)
   })

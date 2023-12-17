@@ -1,4 +1,4 @@
-name: VRT - Screenshots
+name: VRT
 
 on:
   deployment_status:
@@ -35,9 +35,8 @@ jobs:
 
       - run: pnpm test:vrt:screenshots
         env:
-          BASE_URL: ${{ github.event.deployment_status.environment_url }}
+          BASE_URL: https://github-nippou-web.vercel.app/
 
-      - uses: actions/cache/save@v3
-        with:
-          path: src/__vrt__/snapshots
-          key: vrt-${{ github.sha }}
+      - run: pnpm test:vrt:compare
+        env:
+          BASE_URL: ${{ github.event.deployment_status.environment_url }}

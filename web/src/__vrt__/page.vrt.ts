@@ -1,6 +1,4 @@
-import path from 'path'
-
-import { test, type Page, type TestInfo } from '@playwright/test'
+import { test, type Page, type TestInfo, expect } from '@playwright/test'
 
 interface TargetPage {
   name: string
@@ -8,13 +6,15 @@ interface TargetPage {
 }
 
 const screenshot = async (page: Page, testInfo: TestInfo, targetPage: TargetPage) => {
-  const fileName = `${targetPage.name}.png`
   console.log({ testInfo })
   await page.goto(targetPage.path)
-  await page.screenshot({
-    fullPage: true,
-    path: path.join(testInfo.project.snapshotDir, 'snapshots', fileName),
-  })
+
+  return page.screenshot({ fullPage: true })
+}
+
+const compare = async (page: Page, testInfo: TestInfo, targetPage: TargetPage) => {
+  const result = await screenshot(page, testInfo, targetPage)
+  expect(result).toMatchSnapshot()
 }
 
 const targetPage: TargetPage = {
@@ -25,5 +25,11 @@ const targetPage: TargetPage = {
 test.describe('screenshots', () => {
   test(targetPage.name, async ({ page }, testInfo) => {
     await screenshot(page, testInfo, targetPage)
+  })
+})
+
+test.describe('compare', () => {
+  test(targetPage.name, async ({ page }, testInfo) => {
+    await compare(page, testInfo, targetPage)
   })
 })

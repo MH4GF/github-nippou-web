@@ -44,12 +44,9 @@ const Loading = () => {
 
 const UnAuthenticated = () => {
   return (
-    <>
-      <span className="text-slate-700">You are not signed in</span>
-      <Link href="api/auth/signin">
-        <Button>Sign in</Button>
-      </Link>
-    </>
+    <Link href="api/auth/signin">
+      <Button>Sign in</Button>
+    </Link>
   )
 }
 

@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export const GitHubNippouDescription = () => {
   return (
-    <div className="mx-auto max-w-7xl sm:p-6 lg:px-8">
+    <div className="mx-auto max-w-7xl p-4 sm:p-6 lg:px-8">
       <h3 className="text-xl font-bold">How to use github-nippou?</h3>
       <p>
         Print today&apos;s your GitHub activity for issues and pull requests.

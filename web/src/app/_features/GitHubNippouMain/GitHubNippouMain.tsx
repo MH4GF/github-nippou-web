@@ -18,7 +18,7 @@ export const GitHubNippouMain: FC = () => {
   })
 
   return (
-    <main className="mx-auto grid max-w-7xl gap-6 sm:p-6 lg:px-8">
+    <main className="mx-auto grid max-w-7xl gap-6 p-4 sm:p-6 lg:px-8">
       {!state.success && <Alert>{state.error}</Alert>}
       <GitHubNippouForm formAction={formAction} />
       <div>

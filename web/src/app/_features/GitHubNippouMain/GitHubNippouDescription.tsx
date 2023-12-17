@@ -11,6 +11,7 @@ export const GitHubNippouDescription = () => {
         This is a helpful when you write a daily report in reference to GitHub. &quot;Nippou&quot;
         is a japanese word which means a daily report.
         <br />
+        wao!
         This site is based on{' '}
         <Link
           href="https://github.com/masutaka/github-nippou"

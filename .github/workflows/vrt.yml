@@ -46,4 +46,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: vrt-failed-screenshots-${{ github.sha }}
-          path: test-results
+          path: web/test-results

@@ -9,7 +9,7 @@ concurrency:
 
 jobs:
   screenshots:
-    if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
+    if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success' && github.event.deployment_status.environment == 'Preview – github-nippou-web'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     permissions:

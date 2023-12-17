@@ -12,8 +12,8 @@
     "lint:next": "next lint",
     "lint:prettier": "prettier --cache --check .",
     "start": "next start",
-    "test:vrt:compare": "playwright test --grep 'compare'",
-    "test:vrt:screenshots": "playwright test --grep 'screenshots'"
+    "test:vrt:compare": "playwright test",
+    "test:vrt:screenshots": "playwright test --update-snapshots"
   },
   "prettier": "@mh4gf/configs/prettier",
   "dependencies": {

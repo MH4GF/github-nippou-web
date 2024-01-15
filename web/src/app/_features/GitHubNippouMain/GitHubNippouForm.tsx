@@ -1,5 +1,6 @@
 import type { FC } from 'react'
 
+import { DateInput } from './DateInput'
 import { GistIdInput } from './GistIdInput'
 import { SubmitButton } from './SubmitButton'
 
@@ -12,6 +13,8 @@ export const GitHubNippouForm: FC<Props> = ({ formAction }) => {
     <form action={formAction} className="grid gap-2">
       <details>
         <summary>Advanced Settings</summary>
+        <DateInput name='sinceDate' label='Since date' />
+        <DateInput name='untilDate' label='Until date' />
         <GistIdInput />
       </details>
       <div>

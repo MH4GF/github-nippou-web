@@ -1,13 +1,18 @@
 'use server'
 
-import { object, parse, safeParse, string } from 'valibot'
+import { object, parse, regex, safeParse, string } from 'valibot'
 
 import { getServerSession } from './_auth/getServerSession'
+
+const dateRegex = /^\d{4}-\d{2}-\d{2}$/
+const noHyphens = (str: string) => str.replace(/-/g, '');
 
 const paramsSchema = object({
   user: string(),
   token: string(),
   settingsGistId: string(),
+  sinceDate: string([regex(dateRegex)]),
+  untilDate: string([regex(dateRegex)]),
 })
 
 const responseSchema = object({
@@ -30,16 +35,20 @@ export const showList = async (_prevState: Result, formData: FormData): Promise<
     user: session?.user.login,
     token: session?.user.accessToken,
     settingsGistId: formData.get('settingsGistId'),
+    sinceDate: formData.get('sinceDate'),
+    untilDate: formData.get('untilDate'),
   })
   if (!parsed.success) {
     return { success: false, error: 'Invalid credentials' }
   }
-  const { user, token, settingsGistId } = parsed.output
+  const { user, token, settingsGistId, sinceDate, untilDate } = parsed.output
 
   const url = new URL(process.env.API_URL)
   url.searchParams.set('user', user)
   url.searchParams.set('token', token)
   url.searchParams.set('settings_gist_id', settingsGistId)
+  url.searchParams.set('since_date', noHyphens(sinceDate))
+  url.searchParams.set('until_date', noHyphens(untilDate))
 
   return fetch(url)
     .then(async (res) => {

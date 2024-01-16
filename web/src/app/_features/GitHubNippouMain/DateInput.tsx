@@ -17,7 +17,7 @@ export const DateInput = ({ name, label }: Props) => {
   const today = new Date();
 
   return (
-    <div className="grid gap-2">
+    <div className="grid gap-1">
       <Label htmlFor={name}>{label}</Label>
       <Input name={name} id={name} type="date" defaultValue={format(today)} />
     </div>

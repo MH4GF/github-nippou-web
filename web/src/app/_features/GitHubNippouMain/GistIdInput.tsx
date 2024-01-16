@@ -21,7 +21,7 @@ export const GistIdInput = () => {
           Read more
         </Link>
       </Label>
-      <div className="mt-2">
+      <div className="mt-1">
         <Input
           name="settingsGistId"
           id="settingsGistId"

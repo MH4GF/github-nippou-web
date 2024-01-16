@@ -5,7 +5,7 @@ import { object, parse, regex, safeParse, string } from 'valibot'
 import { getServerSession } from './_auth/getServerSession'
 
 const dateRegex = /^\d{4}-\d{2}-\d{2}$/
-const noHyphens = (str: string) => str.replace(/-/g, '');
+const noHyphens = (str: string) => str.replace(/-/g, '')
 
 const paramsSchema = object({
   user: string(),

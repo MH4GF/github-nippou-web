@@ -3,7 +3,6 @@ package handler
 import (
 	"encoding/json"
 	"net/http"
-	"time"
 
 	"github.com/masutaka/github-nippou/v4/lib"
 	"golang.org/x/exp/slog"
@@ -33,9 +32,8 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	token := queryParams.Get("token")
 	settingsGistId := queryParams.Get("settings_gist_id")
 	debug := false
-	nowDate := time.Now().Format("20060102")
-	sinceDate := nowDate
-	untilDate := nowDate
+	sinceDate := queryParams.Get("since_date")
+	untilDate := queryParams.Get("until_date")
 
 	list := lib.NewList(sinceDate, untilDate, user, token, settingsGistId, debug)
 	lines, err := list.Collect()

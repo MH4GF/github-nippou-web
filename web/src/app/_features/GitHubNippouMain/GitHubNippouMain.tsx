@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unnecessary-boolean-literal-compare */
+/* eslint-disable @typescript-eslint/no-unnecessary-condition */
 // useFormStateはClient Componentでしか使えない
 'use client'
 
@@ -19,7 +21,7 @@ export const GitHubNippouMain: FC = () => {
 
   return (
     <main className="mx-auto grid max-w-7xl gap-6 p-4 sm:p-6 lg:px-8">
-      {!state.success && <Alert>{state.error}</Alert>}
+      {state?.success === false && <Alert>{state.error}</Alert>}
       <GitHubNippouForm formAction={formAction} />
       <div>
         <Label htmlFor="result">Result</Label>
@@ -27,10 +29,10 @@ export const GitHubNippouMain: FC = () => {
           name="result"
           id="result"
           rows={20}
-          defaultValue={state.success ? state.result : ''}
+          defaultValue={state?.success ? state.result : ''}
         />
         <div className="mt-2">
-          <CopyToClipboardButton text={state.success ? state.result : ''} />
+          <CopyToClipboardButton text={state?.success ? state.result : ''} />
         </div>
       </div>
     </main>

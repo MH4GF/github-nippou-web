@@ -2,6 +2,7 @@ package handler
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"github.com/masutaka/github-nippou/v4/lib"
@@ -36,6 +37,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	untilDate := queryParams.Get("until_date")
 
 	list := lib.NewList(sinceDate, untilDate, user, token, settingsGistId, debug)
+	fmt.Println(list)
 	lines, err := list.Collect()
 	if err != nil {
 		slog.Error(err.Error())
@@ -43,6 +45,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	body := ResponseBody{Result: lines}
+	fmt.Println(body)
 
 	jsonData, err := json.Marshal(body)
 	if err != nil {

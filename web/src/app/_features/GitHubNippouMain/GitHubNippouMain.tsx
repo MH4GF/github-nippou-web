@@ -16,6 +16,7 @@ export const GitHubNippouMain: FC = () => {
     success: true,
     result: '',
   })
+  console.log({ state })
 
   return (
     <main className="mx-auto grid max-w-7xl gap-6 p-4 sm:p-6 lg:px-8">

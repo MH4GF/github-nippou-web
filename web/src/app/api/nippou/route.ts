@@ -1,8 +1,9 @@
-'use server'
-
+import type { NextRequest } from 'next/server'
+import { NextResponse } from 'next/server'
 import { object, parse, regex, safeParse, string } from 'valibot'
 
-import { getServerSession } from './_auth/getServerSession'
+import { getServerSession } from '@/app/_auth/getServerSession'
+import type { NippouResult } from '@/app/types'
 
 const dateRegex = /^\d{4}-\d{2}-\d{2}$/
 const noHyphens = (str: string) => str.replace(/-/g, '')
@@ -19,27 +20,18 @@ const responseSchema = object({
   result: string(),
 })
 
-type Result =
-  | {
-      success: true
-      result: string
-    }
-  | {
-      success: false
-      error: string
-    }
-
-export const showList = async (_prevState: Result, formData: FormData): Promise<Result> => {
+export async function GET(req: NextRequest) {
+  const searchParams = req.nextUrl.searchParams
   const session = await getServerSession()
   const parsed = safeParse(paramsSchema, {
     user: session?.user.login,
     token: session?.user.accessToken,
-    settingsGistId: formData.get('settingsGistId'),
-    sinceDate: formData.get('sinceDate'),
-    untilDate: formData.get('untilDate'),
+    settingsGistId: searchParams.get('settingsGistId'),
+    sinceDate: searchParams.get('sinceDate'),
+    untilDate: searchParams.get('untilDate'),
   })
   if (!parsed.success) {
-    return { success: false, error: 'Invalid credentials' }
+    return NextResponse.json({ success: false, error: 'Invalid credentials' })
   }
   const { user, token, settingsGistId, sinceDate, untilDate } = parsed.output
 
@@ -50,11 +42,11 @@ export const showList = async (_prevState: Result, formData: FormData): Promise<
   url.searchParams.set('since_date', noHyphens(sinceDate))
   url.searchParams.set('until_date', noHyphens(untilDate))
 
-  return fetch(url)
+  const result: NippouResult = await fetch(url)
     .then(async (res) => {
       if (!res.ok) {
         const body = await res.text()
-        throw new Error(body)
+        return { success: false, error: body } as const
       }
 
       const { result } = parse(responseSchema, await res.json())
@@ -67,4 +59,6 @@ export const showList = async (_prevState: Result, formData: FormData): Promise<
       }
       return { success: false, error: 'An unexpected error has occurred' }
     })
+
+  return NextResponse.json(result)
 }

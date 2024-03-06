@@ -1,16 +1,14 @@
-// useFormStatusはClient Componentでしか動作しない
-'use client'
-
 import type { FC } from 'react'
-import { useFormStatus } from 'react-dom'
 
 import { Button } from '@/app/_components'
 
-export const SubmitButton: FC = () => {
-  const { pending } = useFormStatus()
+interface Props {
+  isLoading: boolean
+}
 
+export const SubmitButton: FC<Props> = ({ isLoading }) => {
   return (
-    <Button isLoading={pending} type="submit">
+    <Button isLoading={isLoading} type="submit">
       Run
     </Button>
   )

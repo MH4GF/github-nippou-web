@@ -31,6 +31,7 @@ type Result =
 
 export const showList = async (_prevState: Result, formData: FormData): Promise<Result> => {
   const session = await getServerSession()
+  console.log({ session })
   const parsed = safeParse(paramsSchema, {
     user: session?.user.login,
     token: session?.user.accessToken,
@@ -49,6 +50,7 @@ export const showList = async (_prevState: Result, formData: FormData): Promise<
   url.searchParams.set('settings_gist_id', settingsGistId)
   url.searchParams.set('since_date', noHyphens(sinceDate))
   url.searchParams.set('until_date', noHyphens(untilDate))
+  console.log({ url })
 
   return fetch(url)
     .then(async (res) => {
@@ -56,6 +58,8 @@ export const showList = async (_prevState: Result, formData: FormData): Promise<
         const body = await res.text()
         throw new Error(body)
       }
+
+      console.log({ res })
 
       const { result } = parse(responseSchema, await res.json())
       return { success: true, result } as const

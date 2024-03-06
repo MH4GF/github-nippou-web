@@ -20,7 +20,10 @@ export const GitHubNippouMain: FC = () => {
 
   return (
     <main className="mx-auto grid max-w-7xl gap-6 p-4 sm:p-6 lg:px-8">
-      {!state.success && <Alert>{state.error}</Alert>}
+      {
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+        !state?.success && <Alert>{state.error}</Alert>
+      }
       <GitHubNippouForm formAction={formAction} />
       <div>
         <Label htmlFor="result">Result</Label>

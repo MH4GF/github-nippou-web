@@ -16,7 +16,7 @@ jobs:
       contents: read
 
     container:
-      image: mcr.microsoft.com/playwright:v1.40.1-focal
+      image: mcr.microsoft.com/playwright:v1.52.0-focal
 
     defaults:
       run:

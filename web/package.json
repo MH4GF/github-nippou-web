@@ -6,12 +6,13 @@
     "build": "next build",
     "dev": "next dev",
     "format": "biome format --write .",
-    "lint": "biome check .",
+    "lint": "concurrently \"pnpm lint:biome\" \"pnpm lint:tsc\"",
+    "lint:biome": "biome check .",
+    "lint:tsc": "tsc --noEmit",
     "start": "next start",
     "test:vrt:compare": "playwright test",
     "test:vrt:screenshots": "playwright test --update-snapshots"
   },
-  "prettier": "@mh4gf/configs/prettier",
   "dependencies": {
     "@tailwindcss/forms": "^0.5.10",
     "ahooks": "^3.8.4",
@@ -37,7 +38,6 @@
     "autoprefixer": "^10.4.21",
     "concurrently": "^9.1.2",
     "postcss": "^8.5.3",
-    "prettier": "^3.5.3",
     "tailwindcss": "^4.1.4",
     "typescript": "^5.8.3"
   },

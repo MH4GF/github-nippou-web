@@ -1,5 +1,5 @@
-import type { Config } from 'tailwindcss'
 import forms from '@tailwindcss/forms'
+import type { Config } from 'tailwindcss'
 
 const config: Config = {
   content: [
@@ -17,4 +17,5 @@ const config: Config = {
   },
   plugins: [forms],
 }
+// biome-ignore lint/style/noDefaultExport: tailwind requires default export
 export default config

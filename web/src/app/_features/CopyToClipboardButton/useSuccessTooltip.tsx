@@ -4,7 +4,9 @@ export const useSuccessTooltip = () => {
   const [show, setShow] = useState(false)
 
   useEffect(() => {
-    if (!show) return
+    if (!show) {
+      return
+    }
 
     const timer = setTimeout(() => {
       setShow(false)

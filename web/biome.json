@@ -3,5 +3,16 @@
   "extends": [
     "./node_modules/@mh4gf/configs/biome/index.jsonc",
     "./node_modules/@mh4gf/configs/biome/react.jsonc"
-  ]
+  ],
+  "linter": {
+    "rules": {
+      "correctness": {
+        "useImportExtensions": "off"
+      },
+      "performance": {
+        "noBarrelFile": "off",
+        "noReExportAll": "off"
+      }
+    }
+  }
 }

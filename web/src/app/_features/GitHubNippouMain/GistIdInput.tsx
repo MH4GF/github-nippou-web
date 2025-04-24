@@ -1,5 +1,6 @@
 import { useLocalStorageState } from 'ahooks'
 import Link from 'next/link'
+import type { ChangeEvent } from 'react'
 
 import { Input, Label } from '../../_components'
 
@@ -26,7 +27,7 @@ export const GistIdInput = () => {
           name="settingsGistId"
           id="settingsGistId"
           defaultValue={gistId}
-          onChange={(e) => setGistId(e.target.value)}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => setGistId(e.target.value)}
         />
       </div>
     </div>

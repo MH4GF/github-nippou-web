@@ -22,7 +22,9 @@ export const CopyToClipboardButton: FC<Props> = ({ text }) => {
     navigator.clipboard
       .writeText(text)
       .then(() => setShowTooltip(true))
-      .catch((e) => console.error(e))
+      .catch((_e) => {
+        /* エラー処理 */
+      })
     setIsLoading(false)
   }, [text, setShowTooltip])
 

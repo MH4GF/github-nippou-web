@@ -53,7 +53,6 @@ export async function GET(req: NextRequest) {
       return { success: true, result } as const
     })
     .catch((error: unknown) => {
-      console.error(error)
       if (error instanceof Error) {
         return { success: false, error: error.message }
       }

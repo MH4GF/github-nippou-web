@@ -1,8 +1,8 @@
 // useCallback, useStateはClient Componentでしか使えない
 'use client'
 
-import { useState, useCallback } from 'react'
-import type { FormEvent, FC } from 'react'
+import { useCallback, useState } from 'react'
+import type { FC, FormEvent } from 'react'
 
 import { CopyToClipboardButton } from '../CopyToClipboardButton'
 
@@ -30,8 +30,7 @@ export const GitHubNippouMain: FC = () => {
       .then(async (res) => {
         setState((await res.json()) as NippouResult)
       })
-      .catch((error: unknown) => {
-        console.error(error)
+      .catch((_error: unknown) => {
         setState({ success: false, error: 'An unexpected error has occurred' })
       })
 

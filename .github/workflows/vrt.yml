@@ -27,8 +27,6 @@ jobs:
 
       - uses: MH4GF/shared-config/.github/composite-actions/setup-pnpm@main
         with:
-          node-version-file: web/.node-version
-          pnpm-version: "8.9.2"
           working-directory: web
 
       - run: pnpm i

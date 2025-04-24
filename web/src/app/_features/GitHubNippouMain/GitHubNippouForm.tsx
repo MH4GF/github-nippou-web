@@ -11,7 +11,7 @@ interface Props {
 
 export const GitHubNippouForm: FC<Props> = ({ formAction, isLoading }) => {
   return (
-    <form onSubmit={formAction} className="grid gap-2">
+    <form onSubmit={formAction} className="grid gap-4">
       <details>
         <summary>Advanced Settings</summary>
         <div className="grid gap-4">

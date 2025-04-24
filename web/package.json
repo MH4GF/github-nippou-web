@@ -5,8 +5,8 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
-    "format": "prettier --cache --write .",
-    "lint": "prettier --cache --check .",
+    "format": "biome format --write .",
+    "lint": "biome check .",
     "start": "next start",
     "test:vrt:compare": "playwright test",
     "test:vrt:screenshots": "playwright test --update-snapshots"
@@ -27,6 +27,7 @@
     "valibot": "^1.0.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.9.4",
     "@mh4gf/configs": "^0.4.5",
     "@playwright/test": "^1.52.0",
     "@tailwindcss/postcss": "4.1.4",

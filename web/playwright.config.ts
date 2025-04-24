@@ -1,5 +1,6 @@
 import { defineConfig, devices } from '@playwright/test'
 
+// biome-ignore lint/style/noDefaultExport: playwright requires default export
 export default defineConfig({
   testDir: './src/__vrt__',
   testMatch: 'vrt.test.ts',

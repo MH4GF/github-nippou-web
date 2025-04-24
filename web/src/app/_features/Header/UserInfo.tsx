@@ -1,9 +1,9 @@
 // useSessionを使うためClient Componentに
 'use client'
 
+import { SessionProvider, useSession } from 'next-auth/react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { SessionProvider, useSession } from 'next-auth/react'
 import type { FC } from 'react'
 
 import { Button } from '@/app/_components'

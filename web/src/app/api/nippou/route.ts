@@ -1,6 +1,6 @@
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
-import { object, parse, regex, safeParse, string } from 'valibot'
+import { object, parse, pipe, regex, safeParse, string } from 'valibot'
 
 import { getServerSession } from '@/app/_auth/getServerSession'
 import type { NippouResult } from '@/app/types'
@@ -12,8 +12,8 @@ const paramsSchema = object({
   user: string(),
   token: string(),
   settingsGistId: string(),
-  sinceDate: string([regex(dateRegex)]),
-  untilDate: string([regex(dateRegex)]),
+  sinceDate: pipe(string(), regex(dateRegex, 'Date must be in YYYY-MM-DD format')),
+  untilDate: pipe(string(), regex(dateRegex, 'Date must be in YYYY-MM-DD format')),
 })
 
 const responseSchema = object({
@@ -53,7 +53,6 @@ export async function GET(req: NextRequest) {
       return { success: true, result } as const
     })
     .catch((error: unknown) => {
-      console.error(error)
       if (error instanceof Error) {
         return { success: false, error: error.message }
       }

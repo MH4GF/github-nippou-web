@@ -9,7 +9,7 @@ export const HeaderPresenter: FC<PropsWithChildren> = ({ children }) => {
         <div className="flex h-16 items-center justify-between">
           <div className="flex">
             <div className="flex shrink-0 items-center">
-              <h2 className="text-2xl font-bold leading-7 text-slate-900 sm:truncate sm:text-3xl sm:tracking-tight">
+              <h2 className="text-2xl font-bold leading-7 text-slate-900 sm:text-3xl sm:tracking-tight">
                 github-nippou
               </h2>
             </div>

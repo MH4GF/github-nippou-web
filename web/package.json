@@ -5,12 +5,8 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
-    "format": "conc -c auto pnpm:format:*",
-    "format:eslint": "eslint --fix .",
-    "format:prettier": "prettier --cache --write .",
-    "lint": "conc -c auto pnpm:lint:*",
-    "lint:next": "next lint",
-    "lint:prettier": "prettier --cache --check .",
+    "format": "prettier --cache --write .",
+    "lint": "prettier --cache --check .",
     "start": "next start",
     "test:vrt:compare": "playwright test",
     "test:vrt:screenshots": "playwright test --update-snapshots"
@@ -32,7 +28,6 @@
   },
   "devDependencies": {
     "@mh4gf/configs": "^0.4.5",
-    "@mh4gf/eslint-config": "^0.6.8",
     "@playwright/test": "^1.52.0",
     "@tailwindcss/postcss": "4.1.4",
     "@types/node": "^22.14.1",
@@ -40,9 +35,6 @@
     "@types/react-dom": "^19.1.2",
     "autoprefixer": "^10.4.21",
     "concurrently": "^9.1.2",
-    "eslint": "^9.25.1",
-    "eslint-config-next": "15.3.1",
-    "eslint-plugin-tailwindcss": "^3.18.0",
     "postcss": "^8.5.3",
     "prettier": "^3.5.3",
     "tailwindcss": "^4.1.4",

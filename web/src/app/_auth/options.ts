@@ -24,7 +24,6 @@ export const authOptions: AuthOptions = {
       if (account) {
         token.accessToken = account.access_token
         // @ts-expect-error ... GitHubProfile
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         token.login = profile?.login
       }
       return token
